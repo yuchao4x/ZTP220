@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: clusters-sub-yuchao
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clusters-8d220
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: clusters-sub-yuchao
+  project: ztp-app-project
+  source:
+    path: site-configs
+    repoURL: https://github.com/yuchao4x/ZTP220.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
