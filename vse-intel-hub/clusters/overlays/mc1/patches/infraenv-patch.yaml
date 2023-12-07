@@ -1,0 +1,15 @@
+- op: replace
+  path: /spec/clusterRef/name
+  value: 'mc1-sd-intel-lab'
+- op: replace
+  path: /spec/clusterRef/namespace
+  value: 'mc1-sd-intel-lab'
+- op: replace
+  path: '/spec/nmStateConfigLabelSelector/matchLabels/cluster-name'
+  value: 'mc1-nmstate'
+- op: replace
+  path: '/spec/pullSecretRef/name'
+  value: 'assisted-deployment-pull-secret'
+- op: replace
+  path: /metadata/name
+  value: mc1-sd-intel-lab-infraenv

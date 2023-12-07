@@ -1,0 +1,17 @@
+#FIXME: Do we need this for managed clsuter?
+- op: replace
+  path: /spec/bootMACAddress
+  value: 'DE:AD:BE:EF:01:54'
+- op: replace
+  path: /spec/bmc/address
+  # yamllint disable-line rule:line-length
+  value: redfish-virtualmedia+http://kvmhost2.remote-skylark-ldc1.cars.lab:8082/redfish/v1/Systems/03798b5b-994b-5088-89f3-30f7c6fb35e2
+- op: replace
+  path: /spec/bmc/credentialsName
+  value: hub1-sd-lab-bmc-super3
+- op: replace
+  path: /metadata/labels/infraenvs.agent-install.openshift.io
+  value: hub1-sd-lab-infraenv
+- op: replace
+  path: /metadata/name
+  value: hub1-sd-lab-super3
