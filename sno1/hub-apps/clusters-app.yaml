@@ -6,7 +6,7 @@ metadata:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: clusters-8d220
+  name: clusters-8d142
   namespace: openshift-gitops
 spec:
   destination:
@@ -14,7 +14,7 @@ spec:
     namespace: clusters-sub-yuchao
   project: ztp-app-project
   source:
-    path: site-configs
+    path: sno1/site-configs
     repoURL: https://github.com/yuchao4x/ZTP220.git
     targetRevision: main
   syncPolicy:
