@@ -1,9 +1,0 @@
-- op: replace
-  path: /spec/clusterName
-  value: 'mc1-sd-intel-lab'
-- op: replace
-  path: /spec/clusterNamespace
-  value: 'mc1-sd-intel-lab'
-- op: replace
-  path: /metadata/name
-  value: mc1-sd-intel-lab

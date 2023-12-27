@@ -1,0 +1,65 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: assisted-service-sa
+  namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: assisted-service-cr
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get","list"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: assisted-service-crb
+  annotations:
+    argocd.argoproj.io/sync-wave: "-2"
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: assisted-service-cr
+subjects:
+- kind: ServiceAccount
+  name: assisted-service-sa
+  namespace: open-cluster-management
+
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wait-infra-ready
+  namespace: open-cluster-management
+  annotations:
+    argocd.argoproj.io/sync-wave: "-1"
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      containers:
+      - name: wait-infra-ready
+        image: "pws-registry.intel.lab:5000/google_containers/hyperkube:v1.17.9"
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c"]
+        args: 
+          - |
+            until [ "$(kubectl get pod -n multicluster-engine -l control-plane=infrastructure-operator -ojsonpath={.items[0].status.phase})" == "Running" ];
+            do 
+              echo "infrastructure operator not ready, continue to wait" ;
+              sleep 10
+            done
+      restartPolicy: Never
+      serviceAccountName: assisted-service-sa

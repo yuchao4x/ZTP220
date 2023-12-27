@@ -1,17 +1,17 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: clusters-sub-yuchao
+  name: clusters-sub-8d140
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: clusters-8d142
+  name: clusters-8d140
   namespace: openshift-gitops
 spec:
   destination:
     server: https://kubernetes.default.svc
-    namespace: clusters-sub-yuchao
+    namespace: clusters-sub-8d140
   project: ztp-app-project
   source:
     path: sno1/site-configs

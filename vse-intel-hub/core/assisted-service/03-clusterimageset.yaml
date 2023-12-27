@@ -2,19 +2,9 @@
 apiVersion: hive.openshift.io/v1
 kind: ClusterImageSet
 metadata:
-  name: openshift-v4.9.37
+  name: disconnected-img4.12.19-x86-64-appsub
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
     argocd.argoproj.io/sync-wave: "3"
 spec:
-  releaseImage: quay.io/openshift-release-dev/ocp-release:4.9.37-x86_64
----
-apiVersion: hive.openshift.io/v1
-kind: ClusterImageSet
-metadata:
-  name: openshift-v4.10.45
-  annotations:
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
-    argocd.argoproj.io/sync-wave: "3"
-spec:
-  releaseImage: quay.io/openshift-release-dev/ocp-release:4.10.45-x86_64
+  releaseImage: pws-registry.intel.lab:5000/openshift-release-dev/ocp-release:4.12.19-x86_64

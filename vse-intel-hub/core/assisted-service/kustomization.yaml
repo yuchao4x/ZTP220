@@ -3,7 +3,27 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
 resources:
+  - 00-pre-sync-wait-infra-ready.yaml
   - 01-hiveoverride.yaml
   - 01-provisioningoverride.yaml
   - 02-agentserviceconfig.yaml
   - 03-clusterimageset.yaml
+  - 04-assisted-installer-mirror-config.yaml
+
+patches:
+  - target:
+      kind: AgentServiceConfig
+    patch: |-
+      - op: replace
+        path: /spec/osImages/0/version
+        value: "412.86.202305080640-0"
+      - op: replace
+        path: /spec/osImages/0/url
+        value: http://192.168.8.75/ztp/rhcos-4.12.17-x86_64-live.x86_64.iso
+      - op: replace
+        path: /spec/osImages/0/rootFSUrl
+        value: http://192.168.8.75/ztp/rhcos-4.12.17-x86_64-live-rootfs.x86_64.img
+      - op: add
+        path: /spec/mirrorRegistryRef
+        value:
+          name: assisted-installer-mirror-config

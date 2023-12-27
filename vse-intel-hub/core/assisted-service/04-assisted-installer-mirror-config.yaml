@@ -1,0 +1,98 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: assisted-installer-mirror-config
+  namespace: multicluster-engine
+  labels:
+    app: assisted-service
+data:
+  ca-bundle.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIF6jCCA9KgAwIBAgIUZYfCSj93gTEZgl30t9B+WfpSw6YwDQYJKoZIhvcNAQEL
+    BQAwczELMAkGA1UEBhMCVVMxCzAJBgNVBAgMAk5DMRAwDgYDVQQHDAdSYWxlaWdo
+    MRYwFAYDVQQKDA1SZWQgSGF0LCBJbmMuMQwwCgYDVQQLDANMYWIxHzAdBgNVBAMM
+    FnB3cy1yZWdpc3RyeS5pbnRlbC5sYWIwHhcNMjMxMjEwMTQ1NDQ1WhcNMzMxMjA3
+    MTQ1NDQ1WjBzMQswCQYDVQQGEwJVUzELMAkGA1UECAwCTkMxEDAOBgNVBAcMB1Jh
+    bGVpZ2gxFjAUBgNVBAoMDVJlZCBIYXQsIEluYy4xDDAKBgNVBAsMA0xhYjEfMB0G
+    A1UEAwwWcHdzLXJlZ2lzdHJ5LmludGVsLmxhYjCCAiIwDQYJKoZIhvcNAQEBBQAD
+    ggIPADCCAgoCggIBAMWILIWtl9yrwjj9w8YJzb8T+jgyg8a+C0rV66GvsYUFnnS5
+    5cqFGJIShDKGvAJmmemk3KTDHE/4Qty1VMFp4kHGlRr5xRbwFxeqPZ/SIMdtTpr+
+    fMlaA5xfSzcNxLbD8tz2nVMjofXefza8FCojtzIFaOZ4gchnv+s/1E33PLJcp6K9
+    GiHq4byalbCDL7RkRTwahFWDFLWfUB4Xmt5evpIOTu9tfhPkUWt+VqHGs6wXRt8/
+    r8L3VN0lFjgy62TbjUJjJFlCTVpH5ButXQfa7/1tnrRu4t+DWifivpR5XeKeaNr8
+    8irQ9p3zxqkm472niD5q0VDP+D9qoN8Nrt3jCgRVZ8IS2FT1CRwqmDzA1ka0d1i+
+    nsxC637QrR38/rkvZy6qp07WRg9ijcFxMA/OtzOBiYp/p/zteQmd0o4mtTKpjU29
+    V4Q4dIBer2Jg8OQHO0NLwuS2F1lx6VFU4qOMpBB74nmmutLSY44RhcfqjyPVNIqF
+    ukhpFV7Bg/1j2pM/paarFZBJSg5aLS9H0HW4SKRGSzRPbVXlM3HK6Q5k96NhuGjN
+    9nOxXaYu2ZdT3o3LQr05UzZ5uvsqqY1LWzQuVtteGMG0JqkcRxLiAdd8NKfLjF6c
+    KeqnQx/cSuUmziKe1QQTDUNk7TobwioYdoomcaFY/cY+HDj1X7GRHTvFR6q1AgMB
+    AAGjdjB0MCEGA1UdEQQaMBiCFnB3cy1yZWdpc3RyeS5pbnRlbC5sYWIwDwYDVR0T
+    AQH/BAUwAwEB/zAdBgNVHQ4EFgQU3VZV0bugFiFRuMnkA6eMHbOwbMEwHwYDVR0j
+    BBgwFoAU3VZV0bugFiFRuMnkA6eMHbOwbMEwDQYJKoZIhvcNAQELBQADggIBAID2
+    OOmKHe8lvAVrivB9jrd3VH2n6a5WVr5dNzuwlU9EVVCg2z9RMt/wewiE9HgIwqQj
+    p4cs8CdSruEqqtsumdlhVxIQz2gQSlZpmRXOG69dVyc6Gz27cpCna1MfjayW8/WT
+    sHQZBmnq1wR7ukn6jqwpNJ3oK4/UQ4i7h3TKAFuSXvJuhiqxkyIsOumisnyb8h1E
+    wloIlj0+poMCRp+JFmhbhDeZOG6BBhEfWARWmoS9DtZ8MBp+QRpw/CQyG/KM0Q3d
+    tuAtlQf6GVYUc2K8i/R5VjNm0YVjLp6GSMEdEDrzYSpSwa4D3KvTM6IwEkNgcRjD
+    xyfF+94s4hpHbmoCufqZtcQxYTUmgy37fj9MXgMk3WAeiWnSkV1OTh+LVqab62w0
+    /0LS23VJGjP8Nj5gKFfXXPnK7K7lEAVrgx2HWXaOm2LJf7jO20q+TojyPAYRc4dg
+    D4G1iGr09C/A1DLIy8dMJVWf+F3uDDFMck5dcJqT/YD2KWUt4/lTzl5X2EPfgEUE
+    4QhDxNxMgj7qKOC/ifk6BVod8PpTVvz+wxc6Q3v3DD3i2+nZpHl/IXmXnGSf5dL4
+    5nvoKJ2WlPG+TVyuIo1gdDY2e7U2BGbF2Tk+go5I7LqJ6vjp8U39Q/aXqdwSPi2z
+    lJXSnnL0p5jHQY8E0KfH4JjnjGcC9o8gH6+2+pOj
+    -----END CERTIFICATE-----
+  
+  registries.conf: |  
+    unqualified-search-registries = ["registry.access.redhat.com", "docker.io"]
+
+    [[registry]]
+      prefix = ""
+      location = "quay.io/acm-d"
+      mirror-by-digest-only = true
+
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/rhacm2"
+
+    [[registry]]
+      prefix = ""
+      location = "quay.io/ocpmetal"
+      mirror-by-digest-only = true
+
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/ocpmetal"
+        
+    [[registry]]
+      prefix = ""
+      location = "quay.io/edge-infrastructure"
+      mirror-by-digest-only = true
+
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/edge-infrastructure"
+      
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/ocpmetal"
+
+    [[registry]]
+      prefix = ""
+      location = "quay.io/openshift-release-dev/ocp-release"
+      mirror-by-digest-only = true
+    
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/openshift-release-dev/ocp-release"
+    
+    [[registry]]
+      prefix = ""
+      location = "quay.io/openshift-release-dev/ocp-v4.0-art-dev"
+      mirror-by-digest-only = true
+    
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000/openshift-release-dev/ocp-release"
+    
+    [[registry]]
+      prefix = ""
+      location = "registry.redhat.io"
+      mirror-by-digest-only = false
+    
+      [[registry.mirror]]
+        location = "pws-registry.intel.lab:5000"

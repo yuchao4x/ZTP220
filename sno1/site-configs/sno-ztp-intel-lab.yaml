@@ -4,109 +4,92 @@ kind: SiteConfig
 metadata:
   name: "sno-ztp-intel-lab"
   # ① Change <ns> to the namespace in the namespace.yaml file in the previous step, for example: yourname-sno1
-  namespace: "yuchao-8d142-sno1"
+  namespace: "8d140-sno1"
 spec:
   baseDomain: "intel.lab"
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
   # ② Set the cluster version of the SNO you want to deploy, 
-  # Note: Here the default is set to version 4.12.19 (It is not recommended to modify to other versions, because the subsequent XAAS components are tested on version 4.12.19), if you want to set it to another version, you can use command `oc get clusterimagesets` to get the clusterImageSetNameRef
-  clusterImageSetNameRef: "img4.12.19-x86-64-appsub"
-  # ③ Add the public SSH key from the deployment node so that you can log in to the cluster after installation from the deployment node. For example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDaMgir1TXoU0BpdhA1O6AvOmWvQbsHfBapjCS5fdBfOfVrgNe1+9ORDCsU7UKlU8kXUom3ToKb4kEO7qLoq2kWG3dlHomHnEr8mI3KKv+CySkkTxkZoJnBK1lyrmyL/U/G3q/rJr1/TjIXl3HKaZ2cd5dwdN/XD3qvknTyQv6Y9rQKOj8xHmiSI4sbk9EdCzv/yLcvXZWg6hwS/cchmmyn7w6YW0ggULHymq4vcSH5tQx5jcYdO9Vb2A0rXcGxFT8WLPIii5WgoSoTNoMev8ezoPkTTnWVx4lL6+zis0S4Kayyb1Km8i14W8+uhGHFuTvsz3nymo1aWzS7kZhQi8Ei9LeLJVuMbpcl5iyIvCTA1kj6sMCPe0YRhyMUBSvLcyLCavqKD3GTpeJQ46K1Q18KRzblXfSsDCn/pbdMLQeftf72mE394iE4GnHCcpKWEa6FJRr+4uiUs72wiyyJePISvcd+7N3t7rWShOqss4nWf4lGE2R39CuX3NSBvkVNn/E= root@localhost
-  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDAiFKdG/zhxrYNE6w3o5uwqLld3AzPhbJeIC1ncZRJWCBzvdnBcAysVK6Ubj1CFR2iVscz30UpFxm/LEMTtpgkDr81GZkpzvC8Qo8FkdNQsXzv31JkodD0xGQxtovMgExAOycY/RU+teu0mF0Q3SRZOtGnWfGs+Wg9w7o5NKooa13wCl9Iw165AMNrDp6BuSpnPBhp/vpF5y+LBf+zqRbx6Cx7YTw1NEODGFaZAPZ3kAggH0censUo15csNN81eTTikI1bXfHiqc86jWUlTeho5Q0U2nGHdcsp6UiGtQ2eSYbShZpA7zwJfQY7UkyP9RrlzFhpGeRbSIQHfj/UW/f7Dj9L34CBUq0T8n4vyP1hq5oAQ7cln5qxcsvPY9Xmdi+Go6RYmST+u3EeRNX4Nr1uoHBluFnLf6deduGwPsQwUpvRZbAZ3fAkRRC9bFZ5HnXiaK9tmqs+mkFqHg6iLjfkv9s8qAc0U4kDO8uE7U7jVYqgyueO+5ODxzkFbY7LPK8= root@localhost.localdomain"
+  # Note: Here the default is set to version 4.12.19 (If you set another version in step 3, here you can change 4.12.19 to the version number you set.)
+  clusterImageSetNameRef: "disconnected-img4.12.19-x86-64-appsub"
+  # ③ Add the public SSH key from Hub Cluster so that you can log in to the SNO cluster after installation from it,you can also use the public key of other nodes, which node's public key is used is the one used to ssh to the SNO nod. For example: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDaMgir1TXoU0BpdhA1O6AvOmWvQbsHfBapjCS5fdBfOfVrgNe1+9ORDCsU7UKlU8kXUom3ToKb4kEO7qLoq2kWG3dlHomHnEr8mI3KKv+CySkkTxkZoJnBK1lyrmyL/U/G3q/rJr1/TjIXl3HKaZ2cd5dwdN/XD3qvknTyQv6Y9rQKOj8xHmiSI4sbk9EdCzv/yLcvXZWg6hwS/cchmmyn7w6YW0ggULHymq4vcSH5tQx5jcYdO9Vb2A0rXcGxFT8WLPIii5WgoSoTNoMev8ezoPkTTnWVx4lL6+zis0S4Kayyb1Km8i14W8+uhGHFuTvsz3nymo1aWzS7kZhQi8Ei9LeLJVuMbpcl5iyIvCTA1kj6sMCPe0YRhyMUBSvLcyLCavqKD3GTpeJQ46K1Q18KRzblXfSsDCn/pbdMLQeftf72mE394iE4GnHCcpKWEa6FJRr+4uiUs72wiyyJePISvcd+7N3t7rWShOqss4nWf4lGE2R39CuX3NSBvkVNn/E= root@localhost
+  sshPublicKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCbiqpxeBPrI1eAMBG1bqUIbwAfNFVyw10KkUZhfXBljaxWp8gZcoGhrYqhyLHkLFHoT8q6kCLXKi46tbSXmXy+Eftotj99ShIBnh/tjnPNfpyQgLBkfgg/L6nT2TA/Gd+w59BzAjmfDSKD5+e/hL3nmcKW5UR6QTFz8TS5wRPPCeE/D6m/L5l5394Li9psdNDk+WYwbgtc4kXwsk9XOguvzN1T8ulvNdJ8Mc1zbJeYKphcu8VVOI3mVu3ds1ZZyJ5jqqi6L8lfe2aPnFs/KI+OHy7MJ01pyYk9A9FKkPd6JVq7X0+znAlq0I+UxRURfmNVjH8CrRk5OplLSZBx5Rt4wubA1B8UNpq+7pOTPxkxLjJOmsPXxWMX0Q6lg8WolOzk/tE/DcLM3sb2092Kzp/8KrCQcA81w3a6WwuktdIaWzrmz3/qzaerhCBF5BTlIwtfuCnRn/6gfk0VgSOBmW1XEDO0yoPFXxJlEwlvRoUWoJ9j8dUslepcF9GSvun/His= root@8d75-hubcluster"
   clusters:
     # ④ Here the clusterName must be set to the namespace in the namespace.yaml file in the previous step, for example: yourname-sno1
-  - clusterName: "yuchao-8d142-sno1"
+  - clusterName: "8d140-sno1"
     networkType: "OVNKubernetes"
+    extraManifestPath: extra-manifest-self
     clusterLabels:
       common: true
       group-smcix12: ""
       # ⑤ Set a sites label for the cluster, change <ns> to the namespace in the namespace.yaml file in the previous step, for example: yourname-sno1
-      sites : "yuchao-8d142-sno1-intel-lab"
+      sites: "8d140-sno1-intel-lab"
     clusterNetwork:
       - cidr: 10.128.0.0/14
         hostPrefix: 23
     machineNetwork:
-        # ⑥ Fill in the network segment where your SNO server can access the internet.
-        # Note: Modify <SNO-server-NIC1-CIDR>, e.g. 10.67.126.0/23
-      - cidr: 10.67.126.0/23
+        # ⑥ Fill in the intranet segment of your SNO cluster.
+        # Note: Modify <SNO-server-NIC2-CIDR>, e.g. 192.168.8.0/24
+      - cidr: 192.168.8.0/24
     serviceNetwork:
       - 172.30.0.0/16
     additionalNTPSources:
-        # ⑦ Fill in the public ntp server address that can be accessed in your network environment.
-      - 10.104.193.49
-    proxy:
-        # ⑧ http_proxy address for the machine to connect to the Internet.
-        # Note: The proxy address here can only be written in the form of an ip, not in the form of a domain name, e.g. http://10.239.120.55:913
-        # If your network environment does not require proxy, this should be commented out.
-        httpProxy: "http://10.239.120.55:913"
-        # ⑨ https_proxy address for the machine to connect to the Internet.
-        # Note: The proxy address here can only be written in the form of an ip, not in the form of a domain name, e.g. http://10.239.120.55:913
-        # If your network environment does not require proxy, this should be commented out.
-        httpsProxy: "http://10.239.120.55:913"
-        # ⑩ Change <noProxy>, the noproxy needs to set the local loopback address, the wildcard of the cluster network segment, the domain name of the hub cluster, the domain name of the SNO cluster, the clusterNetwork of the SNO cluster, the machineNetwork of the SNO cluster, and the serviceNetwork of the SNO cluster, for example: 127.0.0.1,localhost,10.67.,.hub-kvm.intel.lab,.intel.lab,.yourname-sno1.intel.lab,10.128.0.0/14,10.67.126.0/23,172.30.0.0/16,pws-registry
-        # Note: 
-        # If your network environment does not require proxy, this should be commented out.
-        # For the wildcard of the cluster network segment, suppose your cluster segment is 10.67.126.0/23, then you should write 10.67.
-        # The domain name of the hub cluster is a combination of the "cluster_name" variable and the "base_dns_domain" variable defined in inventory.yml when you create a hub cluster with ansible. for example: .hub-kvm.intel.lab,.intel.lab
-        # The domain name of the SNO cluster is a combination of the "clusterName" variable and the "baseDomain" variable defined in in the current yml file. for example: .yourname-sno1.intel.lab
-        # The clusterNetwork of the SNO cluster and the machineNetwork of the SNO cluster and the serviceNetwork of the SNO cluster are the "clusterNetwork" variable and the "machineNetwork" variable and the "serviceNetwork" variable defined in in the current yml file. for example: 10.128.0.0/14,10.67.126.0/23,172.30.0.0/16
-        # Also, you can add some other addresses you need, for example: pws-registry
-        noProxy: "10.67.,.hub-kvm.intel.lab,.intel.lab,.yuchao-8d142-sno1.intel.lab,10.128.0.0/14,10.67.126.0/23,172.30.0.0/16,pws-registry"
+        # ⑦ Fill in the intranet ip of the hub node.
+      - 192.168.8.75
     nodes:
-        # ⑪ Set the host name of the SNO node, e.g. wse-yourname-sno.
+        # ⑧ Set the host name of the SNO node, e.g. wse-yourname-sno.
         # Note: modify <hostName>, a lowercase RFC 1123 subdomain must consist of lower case alphanumeric characters, '-' or '.', and must start and end with an alphanumeric character (e.g. 'example.com', regex used for validation is '[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*')
-      - hostName: "yuchao-8d142-sno1"
+      - hostName: "wse-8d140-sno"
         role: "master"
-        # ⑫ Set the bmc address of your SNO node and change <bmc-ip> to the ip of your node BMC.
-        # Note: Currently only tested on Dell R750 passed, the configuration of other models of machines may vary.
-        bmcAddress: "idrac-virtualmedia+https://10.67.126.93/redfish/v1/Systems/System.Embedded.1"
-        # ⑬ Set the secret name of the BMC of the SNO node, this name is consistent with the <secret-name> defined in hub-prereqs/bmh-secret.yaml.
+        # ⑨ Set the bmc address of your SNO node and change <bmc-ip> to the ip of your node BMC.
+        # Note: If your sno machine is a dell r750, you should use this link: "idrac-virtualmedia+https://<bmc-ip>/redfish/v1/Systems/System.Embedded.1"; if your sno machine is supermicro(The bmc for supermicro machines requires a license and a specific version of bmc.) or dell, you should use this link: "redfish-virtualmedia://<bmc-ip>/redfish/v1/Systems/1".
+        bmcAddress: "idrac-virtualmedia+https://192.168.8.199/redfish/v1/Systems/System.Embedded.1"
+        #bmcAddress: "redfish-virtualmedia://<bmc-ip>/redfish/v1/Systems/1"
+        # ⑩ Set the secret name of the BMC of the SNO node, this name is consistent with the <secret-name> defined in hub-prereqs/bmh-secret.yaml.
         bmcCredentialsName:
-          name: "secret-8d142"
-        # ⑭ Change <bootMACAddress> to the mac of the NIC where the SNO node's cluster network is located.
+          name: "dell-sno-intel-lab-bmc-secret"
+        # ⑪ Change <bootMACAddress> to the mac of the NIC where the SNO node's cluster network is located.
         # Note: 
-        # The MAC must be the MAC of the NIC that can access the Internet and is used as the cluster network.
+        # The MAC must be the MAC of the internal NIC and is used as the cluster network.
         # If your SNO server does not have a system, you can find the MAC address through the BMC web page.
         # If your SNO server has a system and can ssh login, you can ssh login and use `ip a` command to find.
-        bootMACAddress: "ec:2a:72:33:2b:92"
+        bootMACAddress: "ec:2a:72:33:2a:8d"
         bootMode: "UEFI"
         rootDeviceHints:
-          # ⑮ Set the path to the installation disk drive, for example, by name: /dev/sda to use the first disk named with /dev/sda. Or by uuid: /dev/disk/by-id/wwn-64cd98f04fde100024684cf3034da5c2 if your SNO server has a system and can ssh login, you can ssh login and use `ls /dev/disk/by-id/wwn-` command to find.
+          # ⑫ Set the path to the installation disk drive, for example, by name: /dev/sda to use the first disk named with /dev/sda. Or by uuid: /dev/disk/by-id/wwn-64cd98f04fde100024684cf3034da5c2 if your SNO server has a system and can ssh login, you can ssh login and use `ls /dev/disk/by-id/wwn-*` command to find.
           # Note: If you use the by-id method, here you need to set it to this form: wwn: "64cd98f04fde100024684cf3034da5c2"
           deviceName: "/dev/sda"
-        # The cpuset variable is used to isolate CPU cores and use the isolated cpu cores for the ocp cluster workload. Note: modify <cpuset>, how to set this variable, you can refer to this readme "Set_The_Cpuset_Variable.md" in the docs directory or you can refer to Appendix 8.3
+        # ⑬ The cpuset variable is used to isolate CPU cores and use the isolated cpu cores for the ocp cluster workload. Note: modify <cpuset>, how to set this variable, you can refer to Appendix “Set the cpuset variable”.
         cpuset: "0-1,64-65"
         # Set up the network of your SNO node
-        # Note: The SNO node must be set up the NIC that can access internet and the NIC that be used as cluster network. The configuration of one NIC will be listed here, if you want to set up the rest of the NICs, you can refer to this NIC configuration to add.
         nodeNetwork:
           interfaces:
-            - name: eno1
-              # ⑯ Mac of the NIC 1 to be set. It is the same as the "⑭ bootMACAddress" variable.
-              # Note: modify <SNO-server-NIC1-MAC>
-              macAddress: "ec:2a:72:33:2b:92"
+            - name: eno2
+              # ⑮ Fill in the MAC address of the internal network card in the SNO server. It is the same as the "⑪ bootMACAddress" variable.
+              # Note: modify <SNO-server-NIC2-MAC>
+              macAddress: "ec:2a:72:33:2a:8d"
           config:
             interfaces:
-            - name: eno1
+            - name: eno2
               type: ethernet
-              state: up
+              state: up              
               ipv4:
                 address:
-                  # ⑰ Set <SNO-server-NIC1-IP> to the ip, the ip must be the ip of the NIC that can access the Internet and is used as the cluster network.
-                  # Note: modify <SNO-server-NIC1-IP>, e.g. 10.67.126.101
-                - ip: 10.67.126.105
-                  # ⑱ Set <SNO-server-NIC1-prefix-length> to the prefix-length of your <SNO-server-NIC1>'s network, for example: 23
-                  prefix-length: 23
+                # ⑱ Set <SNO-server-NIC2-IP> to the ip, fill in the IP address of the internal network card in the SNO node.
+                  # Note: modify <SNO-server-NIC2-IP>, e.g. 192.168.8.101
+                - ip: 192.168.8.140
+                  # ⑲ Set <SNO-server-NIC2-prefix-length> to the prefix-length of your <SNO-server-NIC2>'s network, for example: 24
+                  prefix-length: 24
                 enabled: true
                 dhcp: false
             dns-resolver:
               config:
                 server:
-                    # ⑲ Set <Hub-Cluster-server-NIC1-IP> to the ip of your hub cluster physical machine, for example: 10.67.126.100
-                  - 10.67.126.109
+                    # ⑳ Set <Hub-Cluster-server-NIC2-IP> to the ip of your hub cluster physical machine, for example: 192.168.8.100
+                  - 192.168.8.75
             routes:  # The default route here should be set to the NIC that can access the internet.
               config:
               - destination: 0.0.0.0/0
-                # ⑳ Set <SNO-server-NIC1-GW> as the gateway of the NIC, for example: 10.67.126.1
-                next-hop-address: 10.67.126.1
-                next-hop-interface: eno1
+                # ㉑ Set <SNO-server-NIC2-GW> as the gateway of the NIC, you can get the gateway with the `ip r` command, for example: 192.168.8.8
+                next-hop-address: 192.168.8.8
+                next-hop-interface: eno2

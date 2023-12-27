@@ -7,9 +7,12 @@ metadata:
 spec:
   generators:
     - git:
+        # ① Modify <repoURL> to the private repository address you created in step 1, for example: http://<Hub-Cluster-server-NIC2-IP>:8929/<username>/ztp.git
         repoURL: https://github.com/yuchao4x/ZTP220.git
+        # ② Change <revision> to the private repository's branch name you created in step 1, for example: main.
         revision: main
         directories:
+          # ③ Set the path of vse-intel-hub in your private repository relative to the root directory, if you are following the documentation strictly up to now, then here you should fill in vse-intel-hub/core/*
           - path: vse-intel-hub/core/*
   template:
     metadata:
@@ -27,7 +30,9 @@ spec:
             factor: 2
             maxDuration: 5m
       source:
+        # ④ Modify <repoURL> to the private repository address you created in step 1, here is the same as ①, for example: http://<Hub-Cluster-server-NIC2-IP>:8929/<username>/ztp.git
         repoURL: https://github.com/yuchao4x/ZTP220.git
+        # ⑤ Change <targetRevision> to the private repository's branch name you created in step 1, here is the same as ②, for example: main.
         targetRevision: main
         path: '{{path}}'
       destination:

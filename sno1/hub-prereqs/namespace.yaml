@@ -2,4 +2,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: yuchao-8d142-sno1
+  name: 8d140-sno1
