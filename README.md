@@ -7,7 +7,7 @@
 |Vf 3	|cu_up_f1u | | | | |
 |Vf 4	|macvlan | | | | |
 
-| Column 1 | Column 2 | Column 3 |
+
 |----------|----------|----------|
 | Row 1    | Cell 2   | Cell 3   |
 | Row 2    | Cell 5   | Cell 6   |
